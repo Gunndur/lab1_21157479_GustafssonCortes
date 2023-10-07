@@ -33,7 +33,7 @@ Este TDA representa un chatbot en particular, con sus respectivos flujos.
 (define CHATBOT-chatbotID car);Selecciona el id del chatbot.
 (define CHATBOT-name cadr) ;Selecciona el nombre del chatbot.
 (define CHATBOT-welcomeMessage caddr) ;Selecciona el mensaje de bienvenida del chatbot.
-(define CHATBOT-startFlowId cadddr) ; Selecciona el id del flow inicializado del chatbot.
+(define CHATBOT-startFlowId cadddr) ; Selecciona el id del flow inicializado en el chatbot correspondiente.
 (define CHATBOT-flows (lambda (n) (car (cddddr n)))) ;Selecciona el y/o los flows del chatbot.
                     
                     
@@ -42,23 +42,46 @@ Este TDA representa un chatbot en particular, con sus respectivos flujos.
 ;Dominio: chatbot x flow.
 ;Recorrido: chatbot.
 ;Descripción: Función que añade flujos a un chatbot.
-;Recursividad: cola o natural!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!.
+;Recursividad: Natural.
 
-(define chatbot-add-flow(lambda(chatbot . flows)))
-                          
-
-
-
-
-
-
-
+(define chatbot-add-flow(lambda(chatbot flow)
+                          (define cb-add-fl(lambda(cb fl)
+                                             (if (null? (CHATBOT-flows cb))
+                                                 fl
+                                                 (if (= (FLOW-id (frente (CHATBOT-flows cb))) (FLOW-id fl))
+                                                     cb
+                                                     (unir (frente (CHATBOT-flows cb)) (cb-add-fl (resto (CHATBOT-flows cb)) fl))))))
+                          (cb-add-fl chatbot flow)))
 
 #|OTRAS OPERACIONES|#
-
-                    
+                  
 #|PERTENENCIA (NO OBLIGATORIO)|#
 
+;Dom: Lista.
+;Rec: Booleano.
+;Descripción: Verifica que sea de tipo chatbot y retorna un booleano.
+;Recurción: Ninguna.
+
+(define chatbot?(lambda(lista)
+                  (and (= (length lista) 5)
+                       (integer? (CHATBOT-chatbotID lista)) (>= (CHATBOT-chatbotID lista) 0)
+                       (string? (CHATBOT-name lista))
+                       (string? (CHATBOT-welcomeMessage lista))
+                       (integer? (CHATBOT-startFlowId lista)) (>= (CHATBOT-startFlowId lista) 0)
+                       (all-flow? (CHATBOT-flows lista)))))
+                 
+
+;Dom: Lista.
+;Rec: Booleano.
+;Descripción: Verifica que toda una lista sea de tipo chatbot y retorna un booleano.
+;Recurción: Ninguna.
+
+(define all-chatbot?(lambda(lista)
+                      (and (= (length(remove-duplicates(map chatbot? lista))) 1)
+                           (eq? (car (remove-duplicates(map chatbot? lista))) #t))))
+
+
+                             
 
 
 
@@ -68,19 +91,6 @@ Este TDA representa un chatbot en particular, con sus respectivos flujos.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                         
 
 

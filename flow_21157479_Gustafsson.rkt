@@ -42,8 +42,8 @@ Este TDA representa un flujo en particular sin repticiones de un chatbot.
 ;Recursividad: Nula.
 
 (define flow-add-option(lambda(flow option)
-                         (if (and(flow? flow)
-                                 (option? option))
+                         (if (and (flow? flow)
+                                  (option? option))
                              (list (FLOW-id flow) (FLOW-name-msg flow) (remove-duplicates (append (FLOW-option flow) (list option))))
                              flow-inválido)))
                              
@@ -59,18 +59,18 @@ Este TDA representa un flujo en particular sin repticiones de un chatbot.
 ;Recurción: Ninguna.
 
 (define flow?(lambda(list)
-               (and(= (length list) 3)
-                   (integer? (FLOW-id list))(>= (FLOW-id list) 0)
-                   (string? (FLOW-name-msg list))
-                   (all-option? (FLOW-option list)))))
+               (and (= (length list) 3)
+                    (integer? (FLOW-id list))(>= (FLOW-id list) 0)
+                    (string? (FLOW-name-msg list))
+                    (all-option? (FLOW-option list)))))
 
 ;Dom: Lista.
 ;Rec: Booleano.
 ;Descripción: Verifica que toda una lista sea de tipo flow y retorna un booleano.
 ;Recurción: Ninguna.
 (define all-flow?(lambda(list)
-                     (and(= (length(remove-duplicates(map flow? list))) 1)
-                         (eq? (car(remove-duplicates(map flow? list))) #t))))
+                     (and (= (length(remove-duplicates(map flow? list))) 1)
+                          (eq? (car(remove-duplicates(map flow? list))) #t))))
 
 
 

@@ -50,6 +50,10 @@ Este TDA representa las opciones/respuestas que puede optar el usuario ante el c
                 
 #|OTRAS OPERACIONES|#
 
+(define frente car);Retorna la cabeza de una lista.
+(define resto cdr);Retorna la lista sin su cabeza.
+(define unir cons);Retorna la union de dos listas.
+
 ;Dom: Lista.
 ;Rec: Booleano.
 ;Descripción: Funcion para verificar si es un Keyword.

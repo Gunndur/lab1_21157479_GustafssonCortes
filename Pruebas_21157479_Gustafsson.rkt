@@ -3,6 +3,7 @@
 (require "option_21157479_Gustafsson.rkt")
 (require "flow_21157479_Gustafsson.rkt")
 (require "chatbot_21157479_Gustafsson.rkt")
+(require "system_21157479_Gustafsson.rkt")
 
 ;Ejemplo de un sistema de chatbots basado en el esquema del enunciado general
 
@@ -43,9 +44,10 @@
 (define f30 (flow 1 "Flujo 1 Chatbot2\n¿Qué te gustaría estudiar?" op16 op17 op18))
 (define cb2 (chatbot 2 "Orientador Académico"  "Bienvenido\n¿Qué te gustaría estudiar?" 1 f30))
 
-#|
+
 ;Sistema
 (define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0 cb1 cb2))
+#|
 (define s1 (system-add-chatbot s0 cb0)) ;igual a s0
 (define s2 (system-add-user s1 "user1"))
 (define s3 (system-add-user s2 "user2"))
