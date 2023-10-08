@@ -25,7 +25,7 @@ Este TDA representa un
                 (if (and (string? name)
                          (integer? InitialChatbotCodeLink) (>= InitialChatbotCodeLink 0)       ;AGREGAR HISTORIAL Y USUARIO!!!!
                          (all-chatbot? chatbot))
-                         (list name InitialChatbotCodeLink (remove-duplicates (map (frente chatbot))))
+                         (list name InitialChatbotCodeLink (remove-duplicates chatbot))
                          system-inválido)))
 
 #|SELECTORES|#
@@ -40,10 +40,20 @@ Este TDA representa un
 ;Descripción: Función que añade un chatbot a un sistema, si está repetido por verificación de id, no lo agrega.
 ;Recursividad: Nula.
 
+(define system-add-chatbot(lambda(system chatbot)
+                            (if (and (system? system)
+                                     (chatbot? chatbot)
+                                     ;(not (= (map CHATBOT-chatbotID (SYSTEM-chatbot system)) (CHATBOT-chatbotID chatbot)))
+                                     (= (length(remove-duplicates(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x))#t #f)) (map CHATBOT-chatbotID (SYSTEM-chatbot system))))) 1)
+                                     (eq? (car(remove-duplicates(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x))#t #f)) (map CHATBOT-chatbotID (SYSTEM-chatbot system))))) #t))
+                                (list (SYSTEM-name system) (SYSTEM-InitialChatbotCodeLink system) (append (SYSTEM-chatbot system) (list chatbot)))
+                                system-inválido)))
+                                     
 
 
+                                     ;(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x) #t #f))) (map CHATBOT-chatbotID (SYSTEM-chatbot system)))
 
-
+                                     
 #|OTRAS OPERACIONES|#
 
 #|PERTENENCIA (NO OBLIGATORIO)|#
