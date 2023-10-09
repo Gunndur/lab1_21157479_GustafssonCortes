@@ -34,9 +34,9 @@ Este TDA representa un chatbot en particular, con sus respectivos flujos.
 (define CHATBOT-name cadr) ;Selecciona el nombre del chatbot.
 (define CHATBOT-welcomeMessage caddr) ;Selecciona el mensaje de bienvenida del chatbot.
 (define CHATBOT-startFlowId cadddr) ; Selecciona el id del flow inicializado en el chatbot correspondiente.
-(define CHATBOT-flows (lambda (n) (car (cddddr n)))) ;Selecciona el y/o los flows del chatbot.
+(define CHATBOT-flows (lambda (chatbot) (car (cdr (cdr (cdr (cdr chatbot))))))) ;Selecciona el y/o los flows del chatbot.
                     
-                    
+                   
 #|MODIFICADORES|#
 
 ;Dominio: chatbot x flow.
@@ -45,13 +45,20 @@ Este TDA representa un chatbot en particular, con sus respectivos flujos.
 ;Recursividad: Natural.
 
 (define chatbot-add-flow(lambda(chatbot flow)
-                          (define cb-add-fl(lambda(cb fl)
+                          (define fn(lambda(cb fl)
                                              (if (null? (CHATBOT-flows cb))
                                                  fl
                                                  (if (= (FLOW-id (frente (CHATBOT-flows cb))) (FLOW-id fl))
                                                      cb
-                                                     (unir (frente (CHATBOT-flows cb)) (cb-add-fl (resto (CHATBOT-flows cb)) fl))))))
-                          (cb-add-fl chatbot flow)))
+                                                     (unir (frente (CHATBOT-flows cb)) (fn (resto (CHATBOT-flows cb)) fl))))))
+                          (fn chatbot flow)))
+
+
+
+
+
+
+
 
 #|OTRAS OPERACIONES|#
                   

@@ -43,7 +43,7 @@ Este TDA representa un
 (define system-add-chatbot(lambda(system chatbot)
                             (if (and (system? system)
                                      (chatbot? chatbot)
-                                     ;(not (= (map CHATBOT-chatbotID (SYSTEM-chatbot system)) (CHATBOT-chatbotID chatbot)))
+                                    (not (= (map CHATBOT-chatbotID (SYSTEM-chatbot system)) (CHATBOT-chatbotID chatbot)))
                                      (= (length(remove-duplicates(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x))#t #f)) (map CHATBOT-chatbotID (SYSTEM-chatbot system))))) 1)
                                      (eq? (car(remove-duplicates(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x))#t #f)) (map CHATBOT-chatbotID (SYSTEM-chatbot system))))) #t))
                                 (list (SYSTEM-name system) (SYSTEM-InitialChatbotCodeLink system) (append (SYSTEM-chatbot system) (list chatbot)))
@@ -51,7 +51,7 @@ Este TDA representa un
                                      
 
 
-                                     ;(map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x) #t #f))) (map CHATBOT-chatbotID (SYSTEM-chatbot system)))
+                                     (map (lambda(x) (if (not (= (CHATBOT-chatbotID chatbot) x) #t #f))) (map CHATBOT-chatbotID (SYSTEM-chatbot system)))
 
                                      
 #|OTRAS OPERACIONES|#
