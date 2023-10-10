@@ -1,9 +1,29 @@
 #lang racket
+(require "main_21157479_GustafssonCortes.rkt")
+(require "option_21157479_GustafssonCortes.rkt")
+(require "flow_21157479_GustafssonCortes.rkt")
+(require "chatbot_21157479_GustafssonCortes.rkt")
+(require "system_21157479_GustafssonCortes.rkt")
+(require "user_21157479_GustafssonCortes.rkt")
+(require "chatHistory_21157479_GustafssonCortes.rkt")
 
-(require "option_21157479_Gustafsson.rkt")
-(require "flow_21157479_Gustafsson.rkt")
-(require "chatbot_21157479_Gustafsson.rkt")
-(require "system_21157479_Gustafsson.rkt")
+
+
+                     ;-- SCRIPT DE PRUEBAS --
+
+(define op19 (option  1 "a" 1 1 "b" "c" "d"))
+(define op29 (option  2 "2) Estudiar" 2 1 "estudiar" "aprender" "perfeccionarme"))
+(define f19 (flow 1 "Flujo Principal Chatbot 1\nBienvenido\n¿Qué te gustaría hacer?" op19 op29 op19 op29 op19 op29))
+(define f99 (flow-add-option f19 op19))        
+(define cb10 (chatbot 0 "n" "m" 1 f99 f99 f99 f99))
+
+
+
+
+
+
+
+                     ;-- SCRIPT DE PRUEBAS (entregado por la pauta) --
 
 ;Ejemplo de un sistema de chatbots basado en el esquema del enunciado general
 
@@ -48,21 +68,11 @@
 ;Sistema
 (define s0 (system "Chatbots Paradigmas" 0 cb0 cb0 cb0 cb1 cb2))
 (define s1 (system-add-chatbot s0 cb0)) ;igual a s0
+(define s2 (system-add-user s1 "user1"))
+(define s3 (system-add-user s2 "user2"))
+(define s4 (system-add-user s3 "user2"))
+(define s5 (system-add-user s4 "user3"))
 #|
-(define s2 (system-add-user s1 "user1"))
-(define s3 (system-add-user s2 "user2"))
-(define s4 (system-add-user s3 "user2"))
-(define s5 (system-add-user s4 "user3"))
-(define s6 (system-login s5 "user8"))
-(define s7 (system-login s6 "user1"))
-(define s8 (system-login s7 "user2"))
-(define s9 (system-logout s8))
-(define s10 (system-login s9 "user2"))
-(define s1 (system-add-chatbot s0 cb0)) ;igual a s0
-(define s2 (system-add-user s1 "user1"))
-(define s3 (system-add-user s2 "user2"))
-(define s4 (system-add-user s3 "user2"))
-(define s5 (system-add-user s4 "user3"))
 (define s6 (system-login s5 "user8"))
 (define s7 (system-login s6 "user1"))
 (define s8 (system-login s7 "user2"))

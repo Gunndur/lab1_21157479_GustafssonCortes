@@ -1,14 +1,15 @@
 #lang racket
-(require "option_21157479_Gustafsson.rkt")
-(require "flow_21157479_Gustafsson.rkt")
-(require "chatbot_21157479_Gustafsson.rkt")
+(require "option_21157479_GustafssonCortes.rkt")
+(require "flow_21157479_GustafssonCortes.rkt")
+(require "chatbot_21157479_GustafssonCortes.rkt")
 (provide (all-defined-out))
+
 
                      ;-- Implementación TDA chatHistory --
 
 
 #|REPRESENTACIÓN:
-Este TDA representa un 
+Este TDA representa una fecha y hora de forma exacta, siendo estos de tipo entero positivo.
 |#
 
 ;Opciones invalidas                    
@@ -16,9 +17,9 @@ Este TDA representa un
 
 #|CONSTRUCTORES:|#
 
-;Dominio:
-;Recorrido:
-;Descripción: 
+;Dominio: Vacio.
+;Recorrido: chatHistory.
+;Descripción: Crea un chatHistory.
 ;Recursividad: ----
 
 
@@ -32,4 +33,4 @@ Este TDA representa un
 #|OTRAS OPERACIONES|#
 
                     
-#|PERTENENCIA (NO OBLIGATORIO)|#
+#|PERTENENCIA|#
